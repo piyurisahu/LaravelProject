@@ -19,3 +19,4 @@ Route::get('/', function () {
 //    return view('users.index');
 //});
 Route::get('users','UsersController@index');
+Route::post('users','UsersController@store');
