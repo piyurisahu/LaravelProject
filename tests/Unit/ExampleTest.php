@@ -16,5 +16,7 @@ class ExampleTest extends TestCase
     public function testBasicTest()
     {
         $this->assertTrue(true);
+        //$response = $this->json('POST', '/user', ['name' => 'Sally']);
     }
+
 }

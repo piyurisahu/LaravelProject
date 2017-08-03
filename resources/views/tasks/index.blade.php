@@ -8,19 +8,22 @@
 <body>
 
 
-<h1></h1>
-{{--@foreach($users as $user)--}}
-{{--    <li>{{$user->name}}</li>--}}
-{{--@endforeach--}}
+
 <h1>About User</h1>
 
 @foreach($tasks as $task)
-    <li><a href="tasks/{$task->user_id}" name="{{$task->body}}"/> </li>
+
+
+    <li>
+        <a href="/tasks/{{$task->id}}" />{{$task->body}}</li>
+    @endforeach
+
+@foreach($tasks as $task)
+    <li>{{$task->body}}</li>
     @endforeach
 
 
 
-
-</form>
+    </form>
 
 </body>

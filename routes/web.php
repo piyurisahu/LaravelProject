@@ -11,12 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-//Route::get('users',function()
-//{
-//    return view('users.index');
-//});
+
+Route::get('/tasks','TasksController@index');
+
+Route::get('/tasks/{task}','TasksController@show');
+
+
 Route::get('users','UsersController@index');
 Route::post('users','UsersController@store');
+
+Route::get('/about', function () {
+    return view('about');
+});
+
+//
