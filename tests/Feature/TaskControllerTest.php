@@ -16,15 +16,28 @@ class TaskControllerTest extends TestCase
      * A basic test example.
      *
      * @return void
-     */
+
     public function testShouldReturnAlltheTasks()
     {
-        $tasks = factory(Task::class, 3)->create();
+
         $response = $this->get('/tasks');
-        self::assertEquals($tasks[0]->id,1);
-        self::assertEquals($tasks[1]->id,2);
-        self::assertEquals($tasks[2]->id,3);
-        self::assertEquals(sizeof($tasks),3);
+        $data = json_decode($response->getContent(), 1)['data'];
+
+        $this->assertCount(3, $data, 'Should return 3 tasks');
+        $tasks = factory(Task::class, 3)->create();
+        $this->assertEquals(
+            [
+                $tasks[0]->id,
+                $tasks[1]->id,
+                $tasks[2]->id
+            ],
+            [
+                $data[0]['id'],
+                $data[1]['id'],
+                $data[2]['id'],
+            ],
+            'Tasks dont match'
+        );
         $response->assertStatus(200);
     }
 
@@ -51,5 +64,8 @@ class TaskControllerTest extends TestCase
         $response = $this->json('GET', '/tasks/100');
         $response->assertStatus(Response::HTTP_BAD_REQUEST);
     }
+     *
+     *
+     *  */
 
 }
